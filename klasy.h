@@ -8,14 +8,14 @@ using namespace std;
 
 class Uzytkownik {
 protected:
-	static int licznik;
+	//static int licznik;
 	unsigned short int stanowisko;
 	string nazwisko;
 	string imie;
 	string miejscowosc;
 public:
-	Uzytkownik() { licznik++; }
-	~Uzytkownik() { licznik--; }
+	//Uzytkownik() { licznik++; }
+	//~Uzytkownik() { licznik--; }
 	void wypisz_dane(){
 		cout << "Imie i nazwisko pracownika: " << imie << " " << nazwisko << endl;
 	}
@@ -32,25 +32,43 @@ public:
 	~Dzial() {};
 };
 
+void wyswietl_info(string nazwa_art) {
+	ifstream plik;
+	string pom;
+	int pom2;
+	plik.open("artykuly.txt");
+	if (plik.good()) {
+		while (!plik.eof()) {
+			plik >> pom;
+			if (pom == nazwa_art) cout << "Wyswietlam informacje o artykule: \nNazwa artykulu: " << nazwa_art << "	Cena: ";
+			plik >> pom2;
+			cout << pom2 << "	Dzial: ";
+			plik >> pom;
+			cout << pom << "	Ilosc w magazynie: ";
+			plik >> pom2;
+			cout<<pom2 << endl;
+		}
+	}
+}
+
 class Artykul {
 	friend class Kierownik;
+	friend class Magazynier;
+	friend void wyswietl_info(string nazwa_art);
 protected:
 	string dzial;
 	string nazwa;
-	double cena;
-	unsigned int ilosc;
+	double cena=-1;
+	unsigned int ilosc=-1;
 public:
 	Artykul() {};
 	~Artykul() {};
-	void wyswietl_info() {
-		cout << "Wyswietlam informacje o artykule: \nNazwa artykulu: "<<nazwa<<"	Cena: "<<cena<<"	Dzial: "<<dzial<<"	Ilosc w magazynie: "<<ilosc<<endl;
-	}
 	void zmien_cene() {
 		cout << "Zmien cene artykulu " << nazwa << ". Stara cena: " << cena << "\nPodaj nowa cene: ";
 		double pom = cena;
 		cin >> cena;
 		cout << "Zmieniono cene artykulu " << nazwa << " na " << cena << "zl\nAby potwierdzic, nacisnij p.\nAby cofnac zmiany nacisnij c";
-		if (getch() == 'c') {
+		if (_getch() == 'c') {
 			cena = pom;
 			cout << "Nie zapisano zmian. Stara cena: " << cena << endl;
 		}
@@ -61,13 +79,15 @@ public:
 		string pom = nazwa;
 		cin >> nazwa;
 		cout<<"Zmieniono nazwe artykulu na "<<nazwa<<"\nAby potwierdzic, nacisnij p.\nAby cofnac zmiany nacisnij c";
-		if (getch() == 'c') {
+		if (_getch() == 'c') {
 			nazwa = pom;
 			cout << "Nie zapisano zmian. Stara nazwa: " << nazwa << endl;
 		}
 		else cout << "Potwierdzono zmiany\n";
 	}
 };
+
+
 
 class Kierownik : public Uzytkownik {
 public:
