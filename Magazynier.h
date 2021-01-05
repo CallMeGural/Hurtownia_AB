@@ -1,5 +1,5 @@
 #pragma once
-#include "klasy.h"
+#include "Uzytkownik.h"
 #include <iostream>
 
 using namespace std;
