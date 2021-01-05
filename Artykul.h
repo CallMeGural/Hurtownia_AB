@@ -1,30 +1,44 @@
 #pragma once
 #include <iostream>
-#include <iomanip>
 #include <string>
+#include <conio.h> //_getch
 
 //#define NUMER_SERYJNY 6
 
 using namespace std;
 
 class Artykul {
-	friend class ListaArtykulowWDziale;
-	friend class Dzial;
+	friend class Kierownik;
+	friend class Magazynier;
+	friend void wyswietl_info(string nazwa_art);
 protected:
 	string dzial;
-	string nazwaArtykulu;
-	float cena;
-	Artykul* next;
-	Artykul* prev;
-	//char numerSeryjny[NUMER_SERYJNY];
+	string nazwa;
+	double cena=-1;
+	unsigned int ilosc=-1;
 public:
-	Artykul();
-	//Artykul(string _dzial, string _nazwaArtykulu, float _cena, char _numerSeryjny[]);
-	void wprowadzanie_Artykulu(string _dzial, string _nazwaArtykulu, float _cena);
-	~Artykul();
-	void wyswietl_info();
-	void wyswietl_artykul_z_listy();
-	void wycofaj_artykul();
-	void zmien_nazwe_artykulu();
-	void zmien_cene_artykulu();
+	Artykul() {};
+	~Artykul() {};
+	void zmien_cene() {
+		cout << "Zmien cene artykulu " << nazwa << ". Stara cena: " << cena << "\nPodaj nowa cene: ";
+		double pom = cena;
+		cin >> cena;
+		cout << "Zmieniono cene artykulu " << nazwa << " na " << cena << "zl\nAby potwierdzic, nacisnij p.\nAby cofnac zmiany nacisnij c";
+		if (_getch() == 'c') {
+			cena = pom;
+			cout << "Nie zapisano zmian. Stara cena: " << cena << endl;
+		}
+		else cout << "Potwierdzono zmiany\n";
+	}
+	void zmien_nazwe() {
+		cout << "Zmien nazwe artykulu " << nazwa << "\nPodaj nowa nazwe: ";
+		string pom = nazwa;
+		cin >> nazwa;
+		cout<<"Zmieniono nazwe artykulu na "<<nazwa<<"\nAby potwierdzic, nacisnij p.\nAby cofnac zmiany nacisnij c";
+		if (_getch() == 'c') {
+			nazwa = pom;
+			cout << "Nie zapisano zmian. Stara nazwa: " << nazwa << endl;
+		}
+		else cout << "Potwierdzono zmiany\n";
+	}
 };
