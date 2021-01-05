@@ -1,6 +1,7 @@
 #pragma once
 #include "Uzytkownik.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ public:
 		cout << "Podaj nazwe artykulu, na temat ktorego informacje chcesz wyswietlic: ";
 		string nazwa_ar;
 		cin >> nazwa_ar;
-		wyswietl_dane(nazwa_ar);
+		wyswietl_info(nazwa_ar);
 	}
 
 	void proces_reklamacyjny();
