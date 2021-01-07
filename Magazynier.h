@@ -1,7 +1,7 @@
-#pragma once
 #include "Uzytkownik.h"
 #include <iostream>
 #include <string>
+#include "Klient.h"
 
 using namespace std;
 
@@ -20,5 +20,27 @@ public:
 		wyswietl_info(nazwa_ar);
 	}
 
-	void proces_reklamacyjny();
+	void proces_reklamacyjny() {
+		cout << "Dla ktorego klienta chcesz zaczac proces reklamacyjny?\n";
+		Klient k;
+		cin >> k;
+		int wybor;
+		cout << "\nJaka chcesz dokonac akcje?\n1. Zwrot pieniedzy\n2. Wymiana produktu\n3. Odrzucenie relamacji\n";
+		cin >> wybor;
+		switch (wybor){
+		case 1:
+			k.reklamacja.zwrot_pieniedzy();
+			break;
+		case 2:
+			k.reklamacja.wymiana();
+			break;
+		case 3:
+			k.reklamacja.odrzucenie();
+			break;
+		default:
+			cout << "\nZly wybor!\n";
+			break;
+		}
+		cout << "\nZakonczono proces reklamacji!\n";
+	}
 };

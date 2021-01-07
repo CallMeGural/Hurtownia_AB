@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <conio.h> //_getch
+#include "klasy.h"
 
 //#define NUMER_SERYJNY 6
 
@@ -10,6 +11,9 @@ using namespace std;
 class Artykul {
 	friend class Kierownik;
 	friend class Magazynier;
+	friend class Lista_artykulow;
+	friend class Koszyk_klienta;
+	friend class Klient;
 	friend void wyswietl_info(string nazwa_art);
 protected:
 	string dzial;
@@ -17,8 +21,10 @@ protected:
 	double cena=-1;
 	unsigned int ilosc=-1;
 public:
-	Artykul() {};
-	~Artykul() {};
+	~Artykul() {
+		ilosc--;
+	}
+
 	void zmien_cene() {
 		cout << "Zmien cene artykulu " << nazwa << ". Stara cena: " << cena << "\nPodaj nowa cene: ";
 		double pom = cena;
