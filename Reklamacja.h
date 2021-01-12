@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Artykul.h"
 
@@ -8,6 +9,7 @@ protected:
 	friend class Klient;
 	Artykul art;
 public:
+	Reklamacja() {};
 	Reklamacja(Artykul a) {
 		art = a;
 	}
@@ -17,7 +19,7 @@ public:
 	}
 	void wymiana() {
 		cout << "\nDokonuje sie wymiana!";
-		art.~Artykul();
+		//art.~Artykul(); <- to trzeba bedzie zmienic, mianowicie w pliku artykuly.txt zwiekszyc wartosc 'ilosc'
 		cout << "\nWymiana dokonana!\n";
 	}
 	void odrzucenie() {
