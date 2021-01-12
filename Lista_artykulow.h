@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Artykul.h"
 
@@ -36,7 +37,7 @@ class Lista_artykulow {
 		}
 	}
 
-	void dodaj_artykul(Artykul art, Lista_artykulow*& head) {
+	void dodaj_artykul(Artykul art, Lista_artykulow*& head, int position) {
 		Lista_artykulow* supp = new Lista_artykulow;
 		supp = head;
 		Lista_artykulow* newNode = new Lista_artykulow;
